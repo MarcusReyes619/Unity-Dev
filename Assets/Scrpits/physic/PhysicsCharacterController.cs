@@ -40,12 +40,23 @@ public class PhysicsCharacterController : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 		}
 
+        if(maxForce > 5)
+		{
+            maxForce -= 2.0f;
+		}
+
     }
 
+   
 	private void FixedUpdate()
 	{
         rb.AddForce(force, ForceMode.Force);
 	} 
+
+    public void addSpeed(float speedAdd)
+	{
+        maxForce = speedAdd;
+	}
 
     private bool CheckGround() 
 	{

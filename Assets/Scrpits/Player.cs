@@ -41,6 +41,11 @@ public class Player : MonoBehaviour
         health.value -= dmg;
     }
 
+    public void Telly(float x,float y,float z)
+	{
+        transform.position = new Vector3(x, y, z);
+    }
+
     public void OnRespawn(GameObject respawn)
     {
         transform.position = respawn.transform.position;

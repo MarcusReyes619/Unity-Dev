@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class SpeedBoost : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    float speedAdd = 0;
+
+    private void OnTriggerStay(Collider other)
+	{
+
+        if (other.gameObject.TryGetComponent<PhysicsCharacterController>(out PhysicsCharacterController player))
+        {
+            if (speedAdd <= 15)
+            {
+                speedAdd += Time.deltaTime * 2f;
+            }
+            else speedAdd = 15.0f;
+			
+
+        }
+      
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+	private void OnTriggerExit(Collider other)
+	{
+        if (other.gameObject.TryGetComponent<PhysicsCharacterController>(out PhysicsCharacterController player))
+        {
+            player.addSpeed(speedAdd);
+        }
     }
 }

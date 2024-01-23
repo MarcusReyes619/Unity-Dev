@@ -20,6 +20,7 @@ public class PickUp : MonoBehaviour
         if (other.gameObject.TryGetComponent<Player>(out Player player))
         {
             player.Addpoints(10);
+            
         }
 
         Instantiate(pickupPrefab, transform.position, Quaternion.identity);
