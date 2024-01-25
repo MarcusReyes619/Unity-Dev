@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupPrefab: {fileID: 0}
+  sound: {fileID: 8300000, guid: c191911cced3750478fa8aad8406e13d, type: 3}
 --- !u!135 &7463890390373338785
 SphereCollider:
   m_ObjectHideFlags: 0

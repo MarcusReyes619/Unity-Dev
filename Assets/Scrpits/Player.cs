@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
     [Header("Event")]
     [SerializeField] IntEvent scoreEvent = default;
     [SerializeField] TMP_Text scoreText;
-  
+    [SerializeField] public AudioClip sound;
+
 
 
     private int score = 0;
@@ -23,7 +24,8 @@ public class Player : MonoBehaviour
     public void Start()
     {
         health.value = 5.5f;
-        
+        AudioSource.PlayClipAtPoint(sound, transform.position, 1f);
+
     }
 
     // public int Score { get { return score; } set { scoreText.text = Score.ToString; } }
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
     public void Dmg(float dmg)
     {
         health.value -= dmg;
+        
     }
 
     public void Telly(float x,float y,float z)

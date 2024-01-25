@@ -7,6 +7,7 @@ using TMPro;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] GameObject titleUI;
+    [SerializeField] GameObject deadUI;
     [SerializeField] TMP_Text livesUI;
     [SerializeField] TMP_Text timerUI;
     [SerializeField] Slider healthUI;
@@ -30,15 +31,17 @@ public class GameManager : Singleton<GameManager>
     public int Lives { get { return lives; } 
         set { lives = value; livesUI.text = "Lives" + lives.ToString(); } }
 
- //   public float Timer
-	//{
+    public float Timer
+    {
 
 
- //      get { return timer; }
-	//	set { timer = value;
- //           timerUI.text = string.Format("{0:F1}", timer); //timer.ToString();
- //       }
-	//}
+        get { return timer; }
+        set
+        {
+            timer = value;
+            timerUI.text = string.Format("{0:F1}", timer.ToString()); 
+        }
+    }
     void Start()
     {
         scoreEvent.Subscribe(OnAddPoint);
@@ -51,11 +54,13 @@ public class GameManager : Singleton<GameManager>
 		{
 			case State.TITLE:
                 titleUI.SetActive(true);
+                
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
 				break;
 			case State.START_GAME:
                 titleUI.SetActive(false);
+                deadUI.SetActive(false);
                 timer = 60;
                 health.value = 100;
                 lives = 3;
@@ -71,11 +76,11 @@ public class GameManager : Singleton<GameManager>
 				{
                     state = State.GAME_OVER;
 				}
-                //Timer = Timer - Time.deltaTime;
+                Timer = Timer - Time.deltaTime;
 				break;
 			case State.GAME_OVER:
-                titleUI.SetActive(true);
-                state = State.TITLE;
+                deadUI.SetActive(true);
+               // state = State.TITLE;
 				break;
 		}
 
@@ -95,8 +100,9 @@ public class GameManager : Singleton<GameManager>
     {
         print(points);
     }
-    public void OnPlyaerDeadEvent()
+
+    public void TimeAdd()
     {
-        state = State.TITLE;
+        Timer += 5.0f;
     }
 }

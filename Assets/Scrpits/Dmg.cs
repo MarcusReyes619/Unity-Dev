@@ -12,7 +12,7 @@ public class Dmg : MonoBehaviour
         if (other.gameObject.TryGetComponent<Player>(out Player player))
         {
             player.Dmg(dmg);
-            System.Console.WriteLine("work");
+            Debug.Log("REEEE");
         }
     }
 

@@ -17,6 +17,7 @@ public class PhysicsCharacterController : MonoBehaviour
 
     Rigidbody rb;
     Vector3 force = Vector3.zero;
+    float forceMultiplier = 1;
     void Start()
     {
  
@@ -36,27 +37,34 @@ public class PhysicsCharacterController : MonoBehaviour
 
         Debug.DrawRay(transform.position, Vector3.down * rayLength, Color.red);
         if (Input.GetButtonDown("Jump") && CheckGround())
-		{
+        {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-		}
+            jumpForce = 5;
+        }
 
-        if(maxForce > 5)
-		{
-            maxForce -= 2.0f;
-		}
-
+        forceMultiplier -= Time.deltaTime * 0.2f;
+        forceMultiplier = Mathf.Clamp(forceMultiplier, 1, 5);
     }
 
    
 	private void FixedUpdate()
 	{
-        rb.AddForce(force, ForceMode.Force);
+        rb.AddForce(force * forceMultiplier, ForceMode.Force);
 	} 
 
     public void addSpeed(float speedAdd)
 	{
-        maxForce = speedAdd;
+        forceMultiplier = speedAdd;
 	}
+
+    public bool WEEEEEE(float jumpAdd, bool contact)
+    {
+
+        rb.AddForce(Vector3.up * jumpAdd, ForceMode.Impulse);
+
+
+        return false;
+    }
 
     private bool CheckGround() 
 	{
