@@ -24,4 +24,10 @@ public class Dmg : MonoBehaviour
             System.Console.WriteLine("work");
         }
     }
+        
 }
+
+//public interface IDamagable
+//{
+//    void ApplyDamage(float damage);
+//}

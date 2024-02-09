@@ -12,7 +12,7 @@ public class PickUp : MonoBehaviour
 	{
         print(collision.gameObject.name);
         
-        //Instantiate(pickupPrefab, transform.position, Quaternion.identity);
+        Instantiate(pickupPrefab, transform.position, Quaternion.identity);
 	}
 
     private void OnTriggerEnter(Collider other)
