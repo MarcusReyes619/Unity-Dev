@@ -8,7 +8,7 @@ using Unity.Mathematics;
 public class PathFollower : MonoBehaviour
 {
     [SerializeField] SplineContainer splineContainer;
-    [Range(0,40)] public float maxSpeed = 1;
+    [SerializeField] [Range(0,40)] public float maxSpeed = 1;
     
 
     float tdistance = 0;
@@ -30,7 +30,7 @@ public class PathFollower : MonoBehaviour
 
     private void Update()
     {
-        distance += speed * Time.deltaTime;
+        distance += maxSpeed * Time.deltaTime;
         UpdateTransform(math.frac(tdistance));
     }
     private void UpdateTransform(float t)

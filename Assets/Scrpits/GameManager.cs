@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] TMP_Text livesUI;
     [SerializeField] TMP_Text timerUI;
     [SerializeField] Slider healthUI;
-    [SerializeField] FlaotVar health;
+    [SerializeField] FloatVar health;
 
     [Header("Event")]
     [SerializeField] IntEvent scoreEvent;

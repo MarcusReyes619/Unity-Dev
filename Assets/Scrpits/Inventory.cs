@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour
         currentItem?.Use();
     }
 
-    public void OnStopUse()
+    public void StopUse()
     {
         currentItem?.StopUse();
     }

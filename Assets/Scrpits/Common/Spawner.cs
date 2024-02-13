@@ -42,10 +42,17 @@ public abstract class Spawner : MonoBehaviour, IInteractable
 		if (active)
         {
             SetActive();
+        }
+
+		if (action != null)
+		{
+
 			action.onEnter += OnInteractStart;
 			action.onExit += OnInteractEnd;
 			action.onStay += OnInteractActive;
-        }
+
+		}
+
     }
 
 	IEnumerator SpawnTimer(float time)
@@ -110,28 +117,18 @@ public abstract class Spawner : MonoBehaviour, IInteractable
 
 	}
 
-	public void OnEnter()
-	{
-		SetActive();
-	}
-
-	public void OnExit()
-	{
-		SetInactive();
-	}
-
     public void OnInteractStart(GameObject gameObject)
     {
-        throw new System.NotImplementedException();
+		SetActive();
     }
 
     public void OnInteractActive(GameObject gameObject)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void OnInteractEnd(GameObject gameObject)
     {
-        throw new System.NotImplementedException();
+        
     }
 }

@@ -11,15 +11,18 @@ public class EnemyShip : Enemy
 	private void Start()
 	{
 		weapon.Equip();
-		StartCoroutine(FireTimer());
+		StartCoroutine(FireTimerCR());
+
 	}
 
-	IEnumerator FireTimer()
+	IEnumerator FireTimerCR()
 	{
-		float time = Random.Range(minFireRate, maxFireRate);
-		yield return new WaitForSeconds(time);
-		weapon.Use();
-
+		while (true)
+		{
+			float time = Random.Range(minFireRate, maxFireRate);
+			yield return new WaitForSeconds(time);
+			weapon.Use();
+		}
 	}
 
 }

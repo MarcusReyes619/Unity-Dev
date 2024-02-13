@@ -5,17 +5,33 @@ using UnityEngine;
 public class PlayerShip : MonoBehaviour, IDamagable
 {
     // Start is called before the first frame update
-    [SerializeField] private PathFollower pathflower;
+    //[SerializeField] private PathFollower pathflower;
+    //[SerializeField] private IntEvent scoreEvent;
+    //[SerializeField] private Inventory inventory;
+    //    [SerializeField] private Action action;
+
+    //[SerializeField] private IntVar scroe;
+    //[SerializeField] private FlaotVar hp;
+
+    [SerializeField] private PathFollower pathFollower;
     [SerializeField] private Inventory inventory;
-    [SerializeField] private IntEvent scoreEvent;
-    [SerializeField] private Action action;
-    [SerializeField] private IntVar scroe;
-    [SerializeField] private FlaotVar hp;
+    [SerializeField] private IntEvent ScoreEvent;
+    [SerializeField] Action action;
+    [SerializeField] IntVar score;
+    [SerializeField] private FloatVar hp;
+
+    [SerializeField] protected GameObject hitPrefab;
+    [SerializeField] protected GameObject destroyPrefab;
 
 
-    
 
-    private void Update()
+    private void Start()
+    {
+        ScoreEvent.Subscribe(AddPoints);
+
+    }
+
+    void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
@@ -23,33 +39,39 @@ public class PlayerShip : MonoBehaviour, IDamagable
         }
         if (Input.GetButtonUp("Fire1"))
         {
-            inventory.OnStopUse();
+            inventory.StopUse();
         }
-
-        pathflower.speed = Input.GetKeyDown(KeyCode.Space) ? 2 : 1 ;
-	
-
-		
+        pathFollower.speed = (Input.GetKey(KeyCode.Space)) ? 80.0f : 40.0f;
     }
-	public void Start()
-	{
-        
-        hp.value = 100;
-	}
-	public void Addpoints(int point)
-	{
-        scroe.value += point;
-        Debug.Log(scroe.value);
-	}
+    public void AddPoints(int points)
+    {
+        score.value += points;
+        Debug.Log(score.value);
+    }
 
-	public void ApplyDamage(float damage)
-	{
-		
-	}
+    public void ApplyDamage(float damage)
+    {
+        hp.value -= damage;
+        if (hp.value <= 0)
+        {
+            if (destroyPrefab != null)
+            {
+                Instantiate(destroyPrefab, gameObject.transform.position, Quaternion.identity);
+            }
+            Destroy(gameObject);
+        }
+        else
+        {
+            if (hitPrefab != null)
+            {
+                Instantiate(hitPrefab, gameObject.transform.position, Quaternion.identity);
+            }
+        }
+    }
 
-    public void ApplyHelth(float hp)
-	{
+    public void ApplyHealth(float hp)
+    {
         this.hp.value += hp;
-      //  this.hp.value = Mathf.Min(this.hp, 100);
-	}
+        this.hp.value = Mathf.Min(hp, 100);
+    }
 }

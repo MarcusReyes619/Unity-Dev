@@ -11,7 +11,7 @@ public class HealPickUp : MonoBehaviour
 	{
 		if (other.gameObject.TryGetComponent(out PlayerShip player))
 		{
-			player.ApplyHelth(hp);
+			player.ApplyHealth(hp);
 			if(pickUpPrefab != null) Instantiate(pickUpPrefab, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}

@@ -5,7 +5,7 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] FlaotVar health;
+    [SerializeField] FloatVar health;
     [Header("Event")]
     [SerializeField] IntEvent scoreEvent = default;
     [SerializeField] TMP_Text scoreText;
