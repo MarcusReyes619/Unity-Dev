@@ -20,12 +20,14 @@ public class KinematicController : MonoBehaviour
         Vector3 force = dir * speed * Time.deltaTime;
         transform.localPosition += force;
 
+
+        transform.localPosition = Vector3.ClampMagnitude(transform.localPosition, maxDistance);
         Quaternion qyaw = Quaternion.AngleAxis(dir.x * 20, Vector3.up);
         Quaternion qpitch = Quaternion.AngleAxis(-dir.y * 20, Vector3.right);
 
         Quaternion rotation = qyaw * qpitch;
 
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, rotation, 10);
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, rotation, Time.deltaTime * roationRate);
 
     }
 

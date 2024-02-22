@@ -41,6 +41,7 @@ public class PlayerShip : MonoBehaviour, IDamagable
         {
             inventory.StopUse();
         }
+		
         pathFollower.speed = (Input.GetKey(KeyCode.Space)) ? 80.0f : 40.0f;
     }
     public void AddPoints(int points)
@@ -51,6 +52,7 @@ public class PlayerShip : MonoBehaviour, IDamagable
 
     public void ApplyDamage(float damage)
     {
+        
         hp.value -= damage;
         if (hp.value <= 0)
         {

@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour, IDamagable
 	public void ApplyDamage(float damage)
 	{
         hp -= damage;
-		if (hp <= 0)
+		if (hp < 0)
 		{
             scoreEvent?.RaiseEvent(points);
             if(destoryPrefab != null)
@@ -33,15 +33,4 @@ public class Enemy : MonoBehaviour, IDamagable
         }
 	}
 
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
