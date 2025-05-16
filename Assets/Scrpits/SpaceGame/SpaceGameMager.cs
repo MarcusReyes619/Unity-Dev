@@ -19,18 +19,7 @@ public class SpaceGameMager : Singleton<SpaceGameMager>
     [Header("Event")]
     [SerializeField] IntEvent scoreEvent;
 
-    private int scorer = 0;
 
-    public int Score
-    {
-        get { return scorer; }
-        set
-        {
-            scorer = value;
-            pointUI.text = score.ToString();
-            scoreEvent.RaiseEvent(scorer);
-        }
-    }
 
     public enum State
     {
@@ -111,7 +100,7 @@ public class SpaceGameMager : Singleton<SpaceGameMager>
         }
         
         healthUI.value = health.value / 100.0f;
-
+       // pointUI.text = score.value.ToString();
     }
 
 
@@ -124,6 +113,7 @@ public class SpaceGameMager : Singleton<SpaceGameMager>
     public void OnAddPoint(int points)
     {
         pointUI.text = score.value.ToString();
+        print(score.value);
     }
 
     public void TimeAdd()

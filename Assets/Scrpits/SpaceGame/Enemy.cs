@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour, IDamagable
 		else
 		{
             if (hitPrefab != null)
-            {
+            { 
                 Instantiate(hitPrefab, gameObject.transform.position, Quaternion.identity);
             }
         }
