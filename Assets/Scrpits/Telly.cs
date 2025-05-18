@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Telly : MonoBehaviour
+public class Telly : PickUp
 {
    
     [SerializeField] GameObject nextPostion;
-    [SerializeField] public AudioClip sound;
+    [SerializeField] Player player;
+    
 
-    private void OnTriggerEnter(Collider other)
+    protected override void Ablity()
     {
-        
-        if (other.gameObject.TryGetComponent<Player>(out Player player))
-        {
-
-            player.Telly(nextPostion.transform.position.x, 
-                nextPostion.transform.position.y, 
-                nextPostion.transform.position.z);
-            AudioSource.PlayClipAtPoint(sound, transform.position, 1f);
-
-        }
-        Destroy(gameObject);
+       player.Telly(nextPostion.transform.position.x,
+       nextPostion.transform.position.y,
+       nextPostion.transform.position.z);
+       AudioSource.PlayClipAtPoint(sound, transform.position, 1f);
     }
+    private new void OnTriggerEnter(Collider other)
+    {
+
+        base.OnTriggerEnter(other);
+    }
+
+   
 }

@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AddTime : PickUp
+public class Banna : PickUp
 {
+    [SerializeField] int points;
     protected override void Ablity()
     {
-        GameManager.Instance.TimeAdd();
+        Player player = GameObject.Find("player").GetComponent<Player>();
+        player.Addpoints(points);
     }
 
-  
     private new void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
-        
+
     }
 }

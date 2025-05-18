@@ -2,30 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUp : MonoBehaviour
+public abstract class PickUp : MonoBehaviour
 {
     [SerializeField] GameObject pickupPrefab = null;
     // Start is called before the first frame update
 
-    [SerializeField] public AudioClip sound;
-    private void OnCollisionEnter(Collision collision)
-	{
-        print(collision.gameObject.name);
-        
-        Instantiate(pickupPrefab, transform.position, Quaternion.identity);
-	}
+    protected abstract void Ablity();
 
-    private void OnTriggerEnter(Collider other)
+    [SerializeField] public AudioClip sound;
+ 
+
+    protected void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent<Player>(out Player player))
         {
-            player.Addpoints(10);
-            AudioSource.PlayClipAtPoint(sound, transform.position, 1f);
+            Ablity();
         }
-        
-
-
-      
         Destroy(gameObject);
     }
 }
