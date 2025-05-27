@@ -16,6 +16,7 @@ public class PlayerShip : MonoBehaviour, IDamagable
     [SerializeField] private PathFollower pathFollower;
     [SerializeField] private Inventory inventory;
     [SerializeField] private IntEvent ScoreEvent;
+    private Iterator<Item> iterator;
     [SerializeField] Action action;
     [SerializeField] IntVar score;
     [SerializeField] private FloatVar hp;
@@ -40,6 +41,13 @@ public class PlayerShip : MonoBehaviour, IDamagable
         if (Input.GetButtonUp("Fire1"))
         {
             inventory.StopUse();
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            while (!iterator.hasNext())
+            {
+                Debug.Log(iterator.next().GetData());
+            }
         }
 		
         pathFollower.speed = (Input.GetKey(KeyCode.Space)) ? 80.0f : 40.0f;

@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : Aggregate<Item>
 {
-    [SerializeField] Item[] items;
+    [SerializeField] List<Item> items;
     public Item currentItem { get; private set; }
 
+    public Inventory(List<Item> items)
+    {
+        this.items = items;
+    }
     private void Start()
     {
         currentItem = items[0];
@@ -23,4 +27,8 @@ public class Inventory : MonoBehaviour
         currentItem?.StopUse();
     }
 
+    public Iterator<Item> createIterator()
+    {
+        return new ItemInerator(items);
+    }
 }
